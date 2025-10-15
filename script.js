@@ -2,7 +2,7 @@
 // Script para integrar Google Planilhas com site (GitHub Pages)
 
 // Configurações da planilha
-const PLANILHA_ID = "10hHQUM2Pk5VN4J_rE-iO2KBbAJ_Fo5LWd1cPCHTno08"; // <-- seu ID
+const PLANILHA_ID = "1yQTzn5uz3F3EWNLraWoZw3aznu1mcoYA_YgQK5KlRCg"; // <-- seu ID
 const NOME_ABA = "Página1"; // ajuste se o nome da aba for diferente
 
 // === FUNÇÃO: RECEBER DADOS (via POST) ===
