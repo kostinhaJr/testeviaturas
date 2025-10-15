@@ -1,69 +1,27 @@
-// === CONTROLE DE VIATURAS ===
-// Script para integrar Google Planilhas com site (GitHub Pages)
+// === CONFIGURAÇÃO ===
+const scriptURL = 'https://script.google.com/macros/s/AKfycbyG-vTPIWgWIYNEX1IKMsK5ikUxz_4ekibphO8U4_vISgDLn-yjtfAmvTw3oywMr6Me/exec'; // <-- Seu link Apps Script
 
-// Configurações da planilha
-const PLANILHA_ID = "1yQTzn5uz3F3EWNLraWoZw3aznu1mcoYA_YgQK5KlRCg"; // <-- seu ID
-const NOME_ABA = "registro"; // ajuste se o nome da aba for diferente
+// === CAPTURA O FORMULÁRIO ===
+const form = document.getElementById('formViatura');
+const msg = document.getElementById('mensagem');
 
-// === FUNÇÃO: RECEBER DADOS (via POST) ===
-function doPost(e) {
-  try {
-    const ss = SpreadsheetApp.openById(PLANILHA_ID);
-    const sheet = ss.getSheetByName(NOME_ABA);
+// === ENVIO DOS DADOS ===
+form.addEventListener('submit', e => {
+  e.preventDefault(); // impede o recarregamento da página
 
-    // Captura campos enviados pelo formulário
-    const motorista = e.parameter.motorista || "";
-    const viatura = e.parameter.viatura || "";
-    const kmSaida = e.parameter.kmSaida || "";
-    const kmChegada = e.parameter.kmChegada || "";
-    const observacoes = e.parameter.observacoes || "";
+  const dados = new FormData(form);
 
-    // Grava uma nova linha na planilha
-    sheet.appendRow([
-      new Date(),
-      motorista,
-      viatura,
-      kmSaida,
-      kmChegada,
-      observacoes
-    ]);
-
-    // Retorno simples
-    return ContentService
-      .createTextOutput("OK")
-      .setMimeType(ContentService.MimeType.TEXT);
-
-  } catch (erro) {
-    return ContentService
-      .createTextOutput("ERRO: " + erro.message)
-      .setMimeType(ContentService.MimeType.TEXT);
-  }
-}
-
-// === FUNÇÃO: LISTAR DADOS (via GET) ===
-function doGet(e) {
-  try {
-    const ss = SpreadsheetApp.openById(PLANILHA_ID);
-    const sheet = ss.getSheetByName(NOME_ABA);
-    const data = sheet.getDataRange().getValues();
-
-    // Remove o cabeçalho (primeira linha)
-    const registros = data.slice(1).map(r => ({
-      data: r[0],
-      motorista: r[1],
-      viatura: r[2],
-      kmSaida: r[3],
-      kmChegada: r[4],
-      observacoes: r[5]
-    }));
-
-    return ContentService
-      .createTextOutput(JSON.stringify(registros))
-      .setMimeType(ContentService.MimeType.JSON);
-
-  } catch (erro) {
-    return ContentService
-      .createTextOutput(JSON.stringify({ erro: erro.message }))
-      .setMimeType(ContentService.MimeType.JSON);
-  }
-}
+  fetch(scriptURL, { method: 'POST', body: dados })
+    .then(response => response.text())
+    .then(retorno => {
+      if (retorno.includes("OK")) {
+        msg.textContent = "✅ Registro salvo com sucesso!";
+        form.reset();
+      } else {
+        msg.textContent = "⚠️ Ocorreu um erro ao salvar: " + retorno;
+      }
+    })
+    .catch(error => {
+      msg.textContent = "❌ Erro de conexão: " + error.message;
+    });
+});
