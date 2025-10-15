@@ -20,4 +20,3 @@ form.addEventListener('submit', e => {
     msg.textContent = "❌ Erro de conexão: " + error.message;
   });
 });
-alert('teste')
