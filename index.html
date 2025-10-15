@@ -18,11 +18,18 @@
     <!-- Card do formulário -->
     <div class="card form-card">
     <form id="formViatura">
+
       <label for="motorista">Motorista:</label>
       <input type="text" name="motorista" id="motorista" required>
     
       <label for="viatura">Viatura:</label>
-      <input type="text" name="viatura" id="viatura" required>
+      <select name="viatura" id="viatura" required>
+        <option value="L200">L200</option>
+        <option value="Frontier">Frontier</option>
+        <option value="Ranger">Ranger</option>
+        <option value="Doblo">Doblo</option>
+
+      </select>
     
       <label for="kmSaida">KM Saída:</label>
       <input type="number" name="kmSaida" id="kmSaida" required>
