@@ -210,6 +210,10 @@ textarea{
   color:#111827;
 }
 
+p{
+    margin:0
+}
+
 /* Empty state */
 .empty{
   text-align:center;
