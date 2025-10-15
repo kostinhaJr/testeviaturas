@@ -1,74 +1,14 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Controle de Viaturas</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
-
 <body>
-
-  <div class="container">
-    <!-- Cabeçalho -->
-    <div class="header">
-      <h1>Controle de Viaturas</h1>
-      <p>Registre saídas e chegadas rapidamente</p>
-    </div>
-
-    <!-- Card do formulário -->
-    <div class="card form-card">
-
-      <form id="formViatura">
-
-        <label for="motorista">
-          <p>Motorista:</p>
-        </label>
-        <input type="text" name="motorista" id="motorista" required>
-
-        <label for="requisitante">Requisitante:</label>
-        <input type="text" name="requisitante" id="requisitante" required>
-
-        <label for="viatura">Viatura:</label>
-        <select name="viatura" id="viatura" required>
-          <option value="L200">L200</option>
-          <option value="Frontier">Frontier</option>
-          <option value="Ranger">Ranger</option>
-          <option value="Doblo">Doblo</option>
-        </select>
-
-        <label for="kmSaida">KM Saída:</label>
-        <input type="number" name="kmSaida" id="kmSaida" required>
-
-        <label for="missao">Missão:</label>
-        <input type="text" name="missao" id="missao">
-
-        <label for="dataSaida">Data Saída:</label>
-        <input type="text" name="dataSaida" id="dataSaida">
-
-        <label for="horarioSaida">Horário Saída:</label>
-        <input type="text" name="horarioSaida" id="horarioSaida">
-
-
-        <label for="observacoes">Observações:</label>
-        <input type="text" name="observacoes" id="observacoes">
-
-        <button type="submit">Registrar</button>
-      </form>
-
-      <p id="mensagem"></p>
-
-      <p class="help">Os dados são enviados automaticamente para a planilha do Google.</p>
-    </div>
-
-    <!-- Painel lateral (opcional: registros recentes) -->
-    <div class="card panel" id="painelRegistros">
-      <div class="empty">Nenhum registro carregado.</div>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+    
+    <a href="saida.html">Ir para Saída</a>
+    <a href="chegada.html">Ir para Chegada</a>
+    
 </body>
-
 </html>

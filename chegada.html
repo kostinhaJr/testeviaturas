@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle de Viaturas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a href="saida.html">Ir para Saída</a>
+    <a href="chegada.html">Ir para Chegada</a>
+
+  <div class="container">
+    <!-- Cabeçalho -->
+    <div class="header">
+      <h1>Controle de Viaturas - Chegada</h1>
+    </div>
+
+
+    <!-- Card do formulário -->
+    <div class="card form-card">
+
+      <form id="formViatura">
+
+        <label for="viaturaChegada">Viatura:</label>
+        <select name="viaturaChegada" id="viaturaChegada" required>
+          <option value="L200">L200</option>
+          <option value="Frontier">Frontier</option>
+          <option value="Ranger">Ranger</option>
+          <option value="Doblo">Doblo</option>
+        </select>
+
+        <label for="kmChegada">KM Chegada:</label>
+        <input type="number" name="kmChegada" id="kmChegada" required>
+
+        <label for="dataChegada">Data Chegada:</label>
+        <input type="text" name="dataChegada" id="dataChegada">
+
+        <label for="horarioChegada">Horário Chegada:</label>
+        <input type="text" name="horarioChegada" id="horarioChegada">
+
+
+        <label for="observacoesChegada">Observações:</label>
+        <input type="text" name="observacoes" id="observacoes">
+
+        <button type="submit">Registrar</button>
+      </form>
+
+      <p id="mensagem"></p>
+
+      <p class="help">Os dados são enviados automaticamente para a planilha do Google.</p>
+    </div>
+
+    <!-- Painel lateral (opcional: registros recentes) -->
+    <div class="card panel" id="painelRegistros">
+      <div class="empty">Nenhum registro carregado.</div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
