@@ -1,24 +1,69 @@
-document.querySelector("#formViatura").addEventListener("submit", async (e) => {
-  e.preventDefault();
+// === CONTROLE DE VIATURAS ===
+// Script para integrar Google Planilhas com site (GitHub Pages)
 
-  const form = e.target;
-  const dados = new FormData(form);
+// Configurações da planilha
+const PLANILHA_ID = "10hHQUM2Pk5VN4J_rE-iO2KBbAJ_Fo5LWd1cPCHTno08"; // <-- seu ID
+const NOME_ABA = "Página1"; // ajuste se o nome da aba for diferente
 
-  const url = "https://script.google.com/macros/s/AKfycbyG-vTPIWgWIYNEX1IKMsK5ikUxz_4ekibphO8U4_vISgDLn-yjtfAmvTw3oywMr6Me/exec";
-
+// === FUNÇÃO: RECEBER DADOS (via POST) ===
+function doPost(e) {
   try {
-    const resposta = await fetch(url, {
-      method: "POST",
-      body: dados,
-      mode: "no-cors" // impede o bloqueio CORS
-    });
+    const ss = SpreadsheetApp.openById(PLANILHA_ID);
+    const sheet = ss.getSheetByName(NOME_ABA);
 
-    // Como "no-cors" não retorna resposta legível, apenas mostramos sucesso direto
-    document.querySelector("#mensagem").textContent = "Registro enviado com sucesso!";
-    form.reset();
+    // Captura campos enviados pelo formulário
+    const motorista = e.parameter.motorista || "";
+    const viatura = e.parameter.viatura || "";
+    const kmSaida = e.parameter.kmSaida || "";
+    const kmChegada = e.parameter.kmChegada || "";
+    const observacoes = e.parameter.observacoes || "";
+
+    // Grava uma nova linha na planilha
+    sheet.appendRow([
+      new Date(),
+      motorista,
+      viatura,
+      kmSaida,
+      kmChegada,
+      observacoes
+    ]);
+
+    // Retorno simples
+    return ContentService
+      .createTextOutput("OK")
+      .setMimeType(ContentService.MimeType.TEXT);
 
   } catch (erro) {
-    document.querySelector("#mensagem").textContent = "Falha na conexão.";
-    console.error(erro);
+    return ContentService
+      .createTextOutput("ERRO: " + erro.message)
+      .setMimeType(ContentService.MimeType.TEXT);
   }
-});
+}
+
+// === FUNÇÃO: LISTAR DADOS (via GET) ===
+function doGet(e) {
+  try {
+    const ss = SpreadsheetApp.openById(PLANILHA_ID);
+    const sheet = ss.getSheetByName(NOME_ABA);
+    const data = sheet.getDataRange().getValues();
+
+    // Remove o cabeçalho (primeira linha)
+    const registros = data.slice(1).map(r => ({
+      data: r[0],
+      motorista: r[1],
+      viatura: r[2],
+      kmSaida: r[3],
+      kmChegada: r[4],
+      observacoes: r[5]
+    }));
+
+    return ContentService
+      .createTextOutput(JSON.stringify(registros))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (erro) {
+    return ContentService
+      .createTextOutput(JSON.stringify({ erro: erro.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
