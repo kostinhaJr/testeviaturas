@@ -17,26 +17,26 @@
 
     <!-- Card do formulário -->
     <div class="card form-card">
-      <form id="formViatura">
-        <div class="form-grid">
-          <input type="text" name="motorista" placeholder="Motorista" required>
-          <input type="text" name="viatura" placeholder="Viatura" required>
-        </div>
-
-        <div class="form-grid">
-          <input type="number" name="kmSaida" placeholder="KM Saída" required>
-          <input type="number" name="kmChegada" placeholder="KM Chegada">
-        </div>
-
-        <textarea name="observacoes" placeholder="Observações (opcional)"></textarea>
-
-        <div class="row-inline">
-          <button class="btn btn-primary" type="submit">Registrar</button>
-          <button class="btn btn-ghost" type="reset">Limpar</button>
-        </div>
-
-        <p id="mensagem"></p>
-      </form>
+    <form id="formViatura">
+      <label>Motorista:</label>
+      <input type="text" name="motorista" required>
+    
+      <label>Viatura:</label>
+      <input type="text" name="viatura" required>
+    
+      <label>KM Saída:</label>
+      <input type="number" name="kmSaida" required>
+    
+      <label>KM Chegada:</label>
+      <input type="number" name="kmChegada" required>
+    
+      <label>Observações:</label>
+      <input type="text" name="observacoes">
+    
+      <button type="submit">Registrar</button>
+    </form>
+    
+    <p id="mensagem"></p>
 
       <p class="help">Os dados são enviados automaticamente para a planilha do Google.</p>
     </div>
