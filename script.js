@@ -3,7 +3,7 @@
 
 // Configurações da planilha
 const PLANILHA_ID = "1yQTzn5uz3F3EWNLraWoZw3aznu1mcoYA_YgQK5KlRCg"; // <-- seu ID
-const NOME_ABA = "Página1"; // ajuste se o nome da aba for diferente
+const NOME_ABA = "Registros"; // ajuste se o nome da aba for diferente
 
 // === FUNÇÃO: RECEBER DADOS (via POST) ===
 function doPost(e) {
