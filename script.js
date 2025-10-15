@@ -11,16 +11,14 @@ form.addEventListener('submit', e => {
 
   const dados = new FormData(form);
 
-  fetch(scriptURL, { method: 'POST', body: dados })
-    .then(response => response.text())
-    .then(retorno => {
-      if (retorno.includes("OK")) {
-        msg.textContent = "✅ Registro salvo com sucesso!";
-        form.reset();
-      } else {
-        msg.textContent = "⚠️ Ocorreu um erro ao salvar: " + retorno;
-      }
-    })
+ fetch(scriptURL, { method: 'POST', body: dados, mode: 'no-cors' })
+  .then(() => {
+    msg.textContent = "✅ Registro enviado com sucesso!";
+    form.reset();
+  })
+  .catch(error => {
+    msg.textContent = "❌ Erro de conexão: " + error.message;
+  });
     .catch(error => {
       msg.textContent = "❌ Erro de conexão: " + error.message;
     });
