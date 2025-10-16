@@ -6,12 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Controle de Viaturas</title>
   <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-    <a href="saida.html">Ir para Saída</a>
-    <a href="chegada.html">Ir para Chegada</a>
+  <a href="saida.html">Ir para Saída</a>
+  <a href="chegada.html">Ir para Chegada</a>
 
   <div class="container">
     <!-- Cabeçalho -->
@@ -53,6 +54,16 @@
         <label for="horarioSaida">Horário Saída:</label>
         <input type="text" name="horarioSaida" id="horarioSaida" required>
 
+        <label>Âmbito</label>
+        <br>
+
+        <input type="radio" id="interno" name="ambito" value="Interno" required>
+        <label for="interno">Interno</label>
+
+        <input type="radio" id="externo" name="ambito" value="Externo">
+        <label for="externo">Externo</label>
+
+        <br>
 
         <label for="observacoesSaida">Observações:</label>
         <input type="text" name="observacoesSaida" id="observacoesSaida">
@@ -76,6 +87,3 @@
 
 
 </html>
-
-
-
