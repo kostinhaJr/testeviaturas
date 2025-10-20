@@ -10,13 +10,35 @@
 
 <body>
 
-  <a href="saida.html">Ir para Saída</a>
-  <a href="chegada.html">Ir para Chegada</a>
+  <header>
+    <h1>Controle de Viaturas do SERIPA VI</h1>
+    <h2>Saída</h2>
+  </header>
+
+  <div class="menu">
+    <a href="saida.html" class="botao">Saída</a>
+    <a href="chegada.html" class="botao">Chegada</a>
+  </div>
 
   <div class="container">
     <!-- Cabeçalho -->
     <div class="header">
       <h1>Controle de Viaturas - Chegada</h1>
+    </div>
+
+    <div class="estetica">
+      <div>
+        <p class="esconder">L200:<span id="disponibilidadeL200">Carregando...</span></p>
+      </div>
+      <div>
+        <p class="esconder">Frontier: <span id="disponibilidadeFrontier">Carregando...</span></p>
+      </div>
+      <div>
+        <p class="esconder">Ranger: <span id="disponibilidadeRanger">Carregando...</span></p>
+      </div>
+      <div>
+        <p class="esconder">Doblò: <span id="disponibilidadeDoblo">Carregando...</span></p>
+      </div>
     </div>
 
 
@@ -25,27 +47,38 @@
 
       <form id="formViatura">
 
-        <label for="viaturaChegada">Viatura:</label>
+        <label for="viaturaChegada">
+          <p>Viatura:</p>
+        </label>
         <select name="viaturaChegada" id="viaturaChegada" required>
+          <option value="" disabled selected>Selecione uma viatura</option>
           <option value="L200">L200</option>
           <option value="Frontier">Frontier</option>
           <option value="Ranger">Ranger</option>
           <option value="Doblo">Doblo</option>
         </select>
 
-        <label for="kmChegada">KM Chegada:</label>
+        <label for="kmChegada">
+          <p>KM Chegada:</p>
+        </label>
         <input type="number" name="kmChegada" id="kmChegada" required>
 
-        <label for="dataChegada">Data Chegada:</label>
-        <input type="text" name="dataChegada" id="dataChegada" required>
+        <label for="dataChegada">
+          <p>Data Chegada:</p>
+        </label>
+        <input type="date" name="dataChegada" id="dataChegada" required>
 
-        <label for="horarioChegada">Horário Chegada:</label>
-        <input type="text" name="horarioChegada" id="horarioChegada" required>
+        <label for="horarioChegada">
+          <p>Horário Chegada:</p>
+        </label>
+        <input type="time" name="horarioChegada" id="horarioChegada" required>
 
-        <label for="observacoesChegada">Observações:</label>
+        <label for="observacoesChegada">
+          <p>Observações:</p>
+        </label>
         <input type="text" name="observacoesChegada" id="observacoesChegada" required>
 
-        <button type="submit">Registrar</button>
+        <div class="centro"><button class="botao" type="submit">Registrar</button></div>
       </form>
 
       <p id="mensagem"></p>

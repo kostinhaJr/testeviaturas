@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyG-vTPIWgWIYNEX1IKMsK5ikUxz_4ekibphO8U4_vISgDLn-yjtfAmvTw3oywMr6Me/exec';
     const form = document.getElementById('formViatura');
     const msg = document.getElementById('mensagem');
+    let enviando = false;
 
     const selectViatura = document.getElementById("viatura"); // usado na página de Saída
     const selectChegada = document.getElementById("viaturaChegada"); // usado na página de Chegada
@@ -26,31 +27,28 @@ document.addEventListener("DOMContentLoaded", () => {
         form.addEventListener('submit', e => {
             e.preventDefault();
 
+            if (enviando) return; // se já estiver enviando, ignora
+            enviando = true; // marca como enviando
+
             const botao = form.querySelector('button[type="submit"]');
-            if (!botao) return;
+            if (botao) botao.disabled = true; // desabilita botão
 
-            // Se o botão estiver desabilitado, ignora
-            if (botao.disabled) return;
-
-            botao.disabled = true; // desabilita imediatamente
+            // Aqui você coloca seu fetch normalmente
             const dados = new FormData(form);
-            dados.append('tipo', tipoRegistro);
+            // dados.append('tipo', tipoRegistro); // se tiver
 
-            if (msg) msg.textContent = "⏳ Enviando...";
-
-            fetch(scriptURL, { method: 'POST', body: dados })
+            fetch('SEU_SCRIPT_URL', { method: 'POST', body: dados })
                 .then(res => res.json())
-                .catch(err => console.error(err))
-                .finally(() => {
-                    window.location.href = "registrado.html";
+                .then(data => {
+                    window.location.href = "registrado.html"; // redireciona
+                })
+                .catch(err => {
+                    window.location.href = "registrado.html"; // mesmo em erro
                 });
-
-            // Reabilita o botão após 4 segundos (para permitir novo envio)
-            setTimeout(() => {
-                if (botao) botao.disabled = false;
-            }, 4000);
         });
     }
+
+
     // === BUSCAR CÉLULA NA PLANILHA ===
     function buscarCelula(celula, elementoId) {
         const url = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:json&sheet=${aba}&range=${celula}`;
