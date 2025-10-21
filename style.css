@@ -123,7 +123,8 @@ input[type="number"],
 input[type="time"],
 select,
 textarea,
-#buscarKmSaida {
+#buscarKmSaida,
+#kmSaidaChegada {
   display: flex;
   margin: 5px 0;
   width: 100%;
@@ -134,6 +135,12 @@ textarea,
   font-size: 14px;
   outline: none;
   transition: box-shadow .12s ease, border-color .12s ease, transform .06s ease;
+}
+
+#kmSaidaChegada , #buscarKmSaida{
+  user-select: none;
+  display: inline-block;
+  text-align: center;
 }
 
 #dataSaida,
@@ -303,6 +310,7 @@ textarea {
   font-size: 13px;
   color: var(--muted);
   margin-top: 6px;
+  text-align: center;
 }
 
 /* Tiny utilities */
@@ -358,6 +366,7 @@ p {
   margin: 5px;
   display: flex;
   flex-direction: column;
+  user-select: none;
 }
 
 /* Tabela simples (opcional) */
@@ -441,6 +450,7 @@ a:focus {
   outline-offset: 3px;
   outline: none;
 }
+
 
 /* Small responsive tweaks */
 @media (max-width:720px) {
